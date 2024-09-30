@@ -1,0 +1,192 @@
+:root {
+  --bg-existing: rgba(233, 230, 230, 0.521);
+  --borders: rgb(199, 191, 191);
+  --borders-secondary: rgb(63, 61, 61);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  color: black;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ------------------------ Existing Image ------------------------ */
+.existingImage_container {
+  width: 390px;
+}
+
+/* ------------------------ Search Existing Image ------------------------ */
+.search_container {
+  background-color: var(--bg-existing);
+  width: 100%;
+  height: 64px;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .input_search {
+    height: 48px;
+    width: 100%;
+    padding: 0 48px;
+    font-size: 1em;
+    border: 1px solid var(--borders);
+    border-radius: 5px;
+    outline: none;
+
+    &:focus {
+      border: 1px solid var(--borders-secondary);
+    }
+  }
+
+  .label_search {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 21px;
+  }
+
+  .btn_search_container {
+    position: absolute;
+    top: 12px;
+    left: 336px;
+
+    .btn_search {
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      border: none;
+      border-left: 1px solid var(--borders);
+      cursor: pointer;
+
+      &>img {
+        fill: gray;
+      }
+
+      &:hover {
+        background-color: var(--bg-existing);
+        border-radius: 3px;
+      }
+    }
+  }
+}
+
+/* ------------------------ Options Existign ------------------------ */
+.optionExisting_container {
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+}
+
+.btn_commercial,
+.btn_open {
+  width: 50%;
+  border: none;
+  padding: 0.5em;
+  background-color: var(--bg-existing);
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  border-bottom: 2px solid var(--borders);
+
+  &:active {
+    border-bottom: 2px solid var(--borders-secondary);
+  }
+}
+
+/* ------------------------ Card Existign ------------------------ */
+.filter_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &>p {
+    padding: 1em;
+    width: 100%;
+    color: var(--borders-secondary);
+  }
+
+  .icon_filter {
+    padding: 1em 1em 1em 0;
+
+    &>button {
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--bg-existing);
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+/* ------------------------ Card Existign ------------------------ */
+.container_cards {
+  padding: 0 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+}
+
+.card_container {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid var(--borders);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  justify-content: space-between;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(245, 130, 85, 0.185);
+  }
+}
+
+.caracterist_card {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+
+  .info_card {
+    font-size: 0.9em;
+
+    .cloud_p {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      align-items: center;
+      gap: 2px;
+    }
+  }
+}
+
+.price_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .price {
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+  }
+
+  .delivery {
+    text-align: end;
+  }
+}
