@@ -7,6 +7,12 @@ export const reducer = (state, action) => {
         case "NEXT_PAGE_OPENDATA":
             return { ...state, nextPage: action.payload };
         case "GET_LOADINGMORE_OPENDATA":
-            return { ...state, imageOpen: [...state.imageOpen, ...action.payload] };
+            // Filtrar las nuevas imágenes que no están ya en state.imageOpen
+            const noRepit = action.payload.filter(
+                (newImage) => !state.imageOpen.some((existingImage) => existingImage.archiveId === newImage.archiveId)
+            );
+            return { ...state, imageOpen: [...state.imageOpen, ...noRepit] };
+        default:
+            throw new Error("Error in Reducer");
     }
 };
