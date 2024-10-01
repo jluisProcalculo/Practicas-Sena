@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Card from "./Card";
 import { skyfiPlatformApiArchives } from "../Services/archive";
 import { ContextGlobal } from "../Context/globalContext";
+import { Link } from "react-router-dom";
 
 const OpenData = () => {
   const { state, dispatch } = useContext(ContextGlobal);
@@ -24,6 +25,10 @@ const OpenData = () => {
         {state.imageOpen.map((image) => (
           <Card key={image.archiveId} image={image} />
         ))}
+        <div className="link_taskingorder">
+          <p>Not finding what you're looking for?</p>
+          <Link to={"https://google.com"}>ORDER NEW IMAGE</Link>
+        </div>
       </div>
     </>
   );
