@@ -43,11 +43,29 @@ const Card = ({ image }) => {
    * 3. Se utiliza "Intl.DateTimeFormat" con la localización "en-GB" (formato británico) pone día primero.
    * 4. El método ".format()" es aplicado al objeto "Date" para devolver la fecha como una cadena en el formato "día mes año".
    */
-  function formatDate(isoString) {
+  const formatDate = (isoString) => {
     const date = new Date(isoString);
     const options = { day: "numeric", month: "long", year: "numeric" };
     return new Intl.DateTimeFormat("en-GB", options).format(date);
-  }
+  };
+
+  /**
+   * Formatea el valor de la resolución (gsd) en centímetros o metros dependiendo de su tamaño.
+   *
+   * @param {number} gsd - Valor de la resolución en centímetros.
+   * @method toFixed(0) - Redondea el valor a un número entero sin decimales.
+   *
+   * Paso a paso:
+   * 1. Si el valor de "gsd" es menor a 100, se devuelve el valor redondeado en centímetros, agregando "cm" al final.
+   * 2. Si el valor es igual o mayor a 100, se convierte a metros dividiendo por 100 y agregando "m" al final.
+   */
+  const sizeResolution = (gsd) => {
+    if (gsd < 100) {
+      return gsd.toFixed(0) + "cm";
+    } else {
+      return gsd / 100 + "m";
+    }
+  };
 
   return (
     <div className="card_container">
@@ -61,7 +79,9 @@ const Card = ({ image }) => {
         />
         <section className="info_card">
           <p>{textCapitalize(image.productType)} Image</p>
-          <p>{textCapitalize(image.resolution)}: 10m</p>
+          <p>
+            {textCapitalize(image.resolution)}: {sizeResolution(image.gsd)}
+          </p>
           <p>{formatDate(image.captureTimestamp)}</p>
           <p className="cloud_p">
             <img src="../../public/cloud-sun.svg" alt="" width={24} />
