@@ -1,14 +1,21 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Card from "./Card";
 import { skyfiPlatformApiArchives } from "../Services/archive";
 import { ContextGlobal } from "../Context/globalContext";
 import { Link } from "react-router-dom";
+import { filters } from "../Utils/filtersArchiveData";
 
 const OpenData = () => {
   const { state, dispatch } = useContext(ContextGlobal);
 
   useEffect(() => {
-    skyfiPlatformApiArchives(dispatch);
+    const filterOpen = {
+      resolutions: filters.resolutionsOpen,
+      productTypes: filters.productTypesOpen,
+      providers: filters.providers,
+      openData: filters.openData
+    };
+    skyfiPlatformApiArchives(dispatch, filterOpen);
   }, []);
 
   return (
