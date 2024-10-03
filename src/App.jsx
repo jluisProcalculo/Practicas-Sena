@@ -1,14 +1,29 @@
-import Explore from "./Routes/Explore"
-import Home from "./Routes/Home"
+import { Routes, Route } from "react-router-dom";
+import { routes, routesExplore } from "./Utils/routes";
+import LayoutNavbar from "./Layout/LayoutNavbar";
+import Home from "./Routes/Home";
+import ExistingImage from "./Layout/ExistingImage";
+import CommercialData from "./Components/CommercialData";
+import OpenData from "./Components/OpenData";
 
 function App() {
-
   return (
-    <>
-      {/* <Home /> */}
-      <Explore />
-    </>
-  )
+    <div>
+      <Routes>
+        <Route path="/" element={<LayoutNavbar />}>
+          <Route path={routes.home} element={<Home />} />
+          <Route path={routes.explore} element={<ExistingImage />}>
+              <Route path={routesExplore.commercial} element={<CommercialData />} />
+              <Route path={routesExplore.open} element={<OpenData />} />
+          </Route>
+          <Route
+            path={routes.notFound}
+            element={<h1>Error 404 - Page not Found</h1>}
+          />
+        </Route>
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
