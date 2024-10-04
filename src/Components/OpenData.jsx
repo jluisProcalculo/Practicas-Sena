@@ -44,7 +44,7 @@ const OpenData = () => {
   return (
     <>
       <div
-        className="optionExisting_container"
+        className="scroll_container"
         ref={containerRef}
         onScroll={handleScroll} // Detecta el evento de scroll
       >

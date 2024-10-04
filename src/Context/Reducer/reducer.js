@@ -1,4 +1,4 @@
-export const initialState = { imageOpen: [], nextPage: null };
+export const initialState = { imageOpen: [], nextPage: null, detailImage: {} };
 
 export const reducer = (state, action) => {
     switch (action.type) {
@@ -13,6 +13,8 @@ export const reducer = (state, action) => {
                     existingImage.archiveId === newImage.archiveId)
             );
             return { ...state, imageOpen: [...state.imageOpen, ...noRepit] };
+        case "GET_DETAILIMAGE":
+            return { ...state, detailImage: action.payload };
         default:
             throw new Error("Error in Reducer");
     }

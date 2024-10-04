@@ -41,3 +41,17 @@ export const continueCatalogArchives = async (nextPage, dispatch) => {
         console.log("Error in continueCatalogArchives, " + error);
     }
 };
+
+export const skyfiPlatformApiGetArchive = async (id, dispatch) => {
+    try {
+        let headers = { "X-Skyfi-Api-Key": apiKey.apiKey }
+        let archive_response = await axios.get(
+            `/platform-api/archives/${id}`,
+            { headers: headers }
+        );
+        let archive = archive_response.data;
+        dispatch({ type: "GET_DETAILIMAGE", payload: archive });
+    } catch (error) {
+        console.log("Error in skyfiPlatformApiGetArchive, " + error);
+    }
+};

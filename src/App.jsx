@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { routes, routesExplore } from "./Utils/routes";
 import LayoutNavbar from "./Layout/LayoutNavbar";
 import Home from "./Routes/Home";
-import DetailExistingImage from "./Components/DetailExistingImage";
+import Detail from "./Routes/Detail";
 import ExistingImage from "./Layout/LayoutExistingImage";
 import CommercialData from "./Components/CommercialData";
 import OpenData from "./Components/OpenData";
@@ -19,7 +19,7 @@ function App() {
           </Route>
           <Route
             path={`${routesExplore.detail}/:id`}
-            element={<DetailExistingImage />}
+            element={<Detail />}
           />
           <Route
             path={routes.notFound}
