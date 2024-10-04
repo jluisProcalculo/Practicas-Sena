@@ -79,7 +79,7 @@ const DetailExistingImage = ({ image }) => {
         <div className="title_detail">
           <p>Image Details</p>
           <button className="btn_clarity">
-            <img src="../../public/clarity-share-line.svg" alt="" width={20} />
+            <img src="/clarity-share-line.svg" alt="" width={20} />
           </button>
         </div>
         <div>
@@ -101,7 +101,7 @@ const DetailExistingImage = ({ image }) => {
                   </p>
                   <p>{formatDate(image.captureTimestamp)}</p>
                   <p className="cloud_p">
-                    <img src="../../public/cloud-sun.svg" alt="" width={24} />
+                    <img src="/cloud-sun.svg" alt="" width={24} />
                     {image.cloudCoveragePercent.toFixed(2)}%
                   </p>
                 </section>

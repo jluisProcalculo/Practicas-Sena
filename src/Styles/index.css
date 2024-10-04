@@ -2,6 +2,7 @@
   --bg-existing: rgba(233, 230, 230, 0.521);
   --borders: rgb(199, 191, 191);
   --borders-secondary: rgb(63, 61, 61);
+  --bg-navbar-color: rgb(9, 6, 20);
 }
 
 * {
@@ -204,7 +205,7 @@
   border-radius: 5px;
 
   &>a {
-    background-color: rgb(9, 6, 20);
+    background-color: var(--bg-navbar-color);
     color: white;
     width: 100%;
     height: 24px;
@@ -285,4 +286,46 @@
   height: 73px;
   width: 100%;
   box-shadow: 0px 3px 15px 0px var(--borders-secondary);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .price_footer_detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+  }
+
+  .text_sizemini {
+    font-size: 12px;
+  }
+
+  .price_text {
+    display: flex;
+    align-items: center;
+  }
+
+  .price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+
+  .btn_footer_detail {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--bg-navbar-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &>p {
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+    }
+  }
 }

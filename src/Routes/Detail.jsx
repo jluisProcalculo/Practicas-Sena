@@ -18,14 +18,24 @@ const Detail = () => {
         <div className="header_detail">
           <div className="icon_preview">
             <Link to={-1}>
-              <img src="../../public/arrow-left-line.svg" alt="" width={24} />
+              <img src="/arrow-left-line.svg" alt="" width={24} />
             </Link>
           </div>
           <h3 className="msg_preview">Low Resolution Preview</h3>
         </div>
         <DetailExistingImage image={state.detailImage} />
         <div className="footer_detail">
-            ADD TO CART
+          <div className="price_footer_detail">
+            <p className="text_sizemini">0 km2 price:</p>
+            <div className="price_text">
+              <span className="price">$0.00</span>
+              <span className="text_sizemini">pre-tax</span>
+            </div>
+          </div>
+          <button className="btn_footer_detail">
+            <img src="/shopping-cart.svg" alt="" width={16} />
+            <p>ADD TO CART</p>
+          </button>
         </div>
       </div>
     </>

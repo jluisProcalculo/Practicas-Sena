@@ -89,7 +89,7 @@ const Card = ({ image }) => {
               </p>
               <p>{formatDate(image.captureTimestamp)}</p>
               <p className="cloud_p">
-                <img src="../../public/cloud-sun.svg" alt="" width={24} />
+                <img src="/cloud-sun.svg" alt="" width={24} />
                 {image.cloudCoveragePercent.toFixed(2)}%
               </p>
             </section>
