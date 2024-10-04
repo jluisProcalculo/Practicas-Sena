@@ -15,5 +15,5 @@ export const routes = {
 export const routesExplore = {
     open: "open",
     commercial: "commercial",
-    detail: "detail",
+    detail: "/explore/detail",
 }

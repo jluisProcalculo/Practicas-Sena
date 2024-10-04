@@ -52,7 +52,7 @@ const OpenData = () => {
           <p>Images already captured</p>
           <div className="icon_filter">
             <button>
-              <img src="../../public/mage--filter.svg" alt="" width={24} />
+              <img src="../../public/mage-filter.svg" alt="" width={24} />
             </button>
           </div>
         </div>

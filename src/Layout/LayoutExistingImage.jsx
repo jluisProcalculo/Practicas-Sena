@@ -2,9 +2,9 @@ import Search from "../Components/Search";
 import { Outlet } from "react-router-dom";
 import Explore from "../Routes/Explore";
 
-const ExistingImage = () => {
+const LayoutExistingImage = () => {
   return (
-    <div className="existingImage_container">
+    <div className="left_container">
       <Search />
       <Explore />
       <Outlet />
@@ -12,4 +12,4 @@ const ExistingImage = () => {
   );
 };
 
-export default ExistingImage;
+export default LayoutExistingImage;

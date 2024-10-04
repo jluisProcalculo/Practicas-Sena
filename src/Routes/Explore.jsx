@@ -8,7 +8,7 @@ const Explore = () => {
   const { state } = useContext(ContextGlobal); // ToDo: la idea es que al dar click en Existing Image se borre el AOI
 
   return (
-    <div className="existingImage_container">
+    <div className="left_container">
       <Link to={`${routes.explore}/${routesExplore.commercial}`}>
         <button className="btn_commercial">Commercial</button>
       </Link>

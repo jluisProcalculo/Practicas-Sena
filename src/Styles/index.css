@@ -17,7 +17,7 @@
 }
 
 /* ------------------------ Existing Image ------------------------ */
-.existingImage_container {
+.left_container {
   width: 390px;
 }
 
@@ -100,7 +100,7 @@
   }
 }
 
-/* ------------------------ Card Existign ------------------------ */
+/* ------------------------ Filters ------------------------ */
 .filter_container {
   display: flex;
   flex-direction: row;
@@ -213,4 +213,41 @@
     align-items: center;
     justify-content: center;
   }
+}
+
+/* ------------------------ Detail image ------------------------ */
+.preview_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-existing);
+
+  & .icon_preview {
+    width: 40px;
+    height: 40px;
+
+    & > a {
+      padding-left: 1em;
+      display: flex;
+      height: 100%;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .msg_preview {
+    padding: 1em;
+    width: 100%;
+  }
+
+}
+.title_detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1.5em;
+  border-bottom: 1px solid var(--borders);
 }

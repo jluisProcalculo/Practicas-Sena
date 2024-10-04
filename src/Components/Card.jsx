@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { routesExplore } from "../Utils/routes";
+
 const Card = ({ image }) => {
   /**
    * Capitaliza la primera letra de cada palabra en el texto, excepto cuando es "SAR".
@@ -68,42 +71,46 @@ const Card = ({ image }) => {
   };
 
   return (
-    <div className="card_container">
-      <section className="caracterist_card">
-        <img
-          src={image.thumbnailUrls["300x300"]}
-          alt=""
-          width={90}
-          height={90}
-          style={{ borderRadius: "5px" }}
-        />
-        <section className="info_card">
-          <p>{textCapitalize(image.productType)} Image</p>
-          <p>
-            {textCapitalize(image.resolution)}: {sizeResolution(image.gsd)}
-          </p>
-          <p>{formatDate(image.captureTimestamp)}</p>
-          <p className="cloud_p">
-            <img src="../../public/cloud-sun.svg" alt="" width={24} />
-            {image.cloudCoveragePercent.toFixed(2)}%
-          </p>
-        </section>
-      </section>
-      <section className="price_container">
-        <div className="price">
-          <h2>${image.priceForOneSquareKm.toFixed(2)} </h2>
-          <div style={{ fontSize: "0.7em" }}>/ km2</div>
+    <>
+      <Link to={`${routesExplore.detail}/${image.archiveId}`}>
+        <div className="card_container">
+          <section className="caracterist_card">
+            <img
+              src={image.thumbnailUrls["300x300"]}
+              alt=""
+              width={90}
+              height={90}
+              style={{ borderRadius: "5px" }}
+            />
+            <section className="info_card">
+              <p>{textCapitalize(image.productType)} Image</p>
+              <p>
+                {textCapitalize(image.resolution)}: {sizeResolution(image.gsd)}
+              </p>
+              <p>{formatDate(image.captureTimestamp)}</p>
+              <p className="cloud_p">
+                <img src="../../public/cloud-sun.svg" alt="" width={24} />
+                {image.cloudCoveragePercent.toFixed(2)}%
+              </p>
+            </section>
+          </section>
+          <section className="price_container">
+            <div className="price">
+              <h2>${image.priceForOneSquareKm.toFixed(2)} </h2>
+              <div style={{ fontSize: "0.7em" }}>/ km2</div>
+            </div>
+            <div className="delivery" style={{ fontSize: "0.7em" }}>
+              <p style={{ color: "rgb(107, 105, 105)" }}>
+                min. size {image.minSqKm.toFixed(0)}km2
+              </p>
+              <p style={{ color: "rgb(107, 105, 105)" }}>
+                Delivery in: {image.deliveryTimeHours.toFixed(0)}h
+              </p>
+            </div>
+          </section>
         </div>
-        <div className="delivery" style={{ fontSize: "0.7em" }}>
-          <p style={{ color: "rgb(107, 105, 105)" }}>
-            min. size {image.minSqKm.toFixed(0)}km2
-          </p>
-          <p style={{ color: "rgb(107, 105, 105)" }}>
-            Delivery in: {image.deliveryTimeHours.toFixed(0)}h
-          </p>
-        </div>
-      </section>
-    </div>
+      </Link>
+    </>
   );
 };
 
