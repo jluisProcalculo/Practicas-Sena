@@ -2,20 +2,22 @@ import { useContext, useEffect, useRef } from "react";
 import Card from "./Card";
 import { skyfiPlatformApiArchives } from "../Services/archive";
 import { ContextGlobal } from "../Context/globalContext";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { continueCatalogArchives } from "../Services/archive";
 import { filters } from "../Utils/filtersArchiveData";
 
 const CommercialData = () => {
   const { state, dispatch } = useContext(ContextGlobal);
   const containerRef = useRef(null); // Referencia al contenedor con scroll
-
+  const params = useParams(); // Obtiene el parámetro de la URL
+  
   useEffect(() => {
     const filterCommercial = {
+      aoi: params.aoi.replace("aoi=", ""), // se remplaza porque fue enviado con un parametro identificador "aoi="
       resolutions: filters.resolutions,
       productTypes: filters.productTypes,
       providers: filters.providers,
-      OpenData: filters.openData, // ToDo: cambiar a "false" cuando se tenga acceso a datos Commercial
+      OpenData: filters.openData, // ToDo: cambiar a "false" y arreglar el OpenData por opendata cuando se tenga acceso a datos Commercial
     };
     skyfiPlatformApiArchives(dispatch, filterCommercial);
   }, []);

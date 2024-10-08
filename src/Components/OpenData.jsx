@@ -2,16 +2,18 @@ import { useContext, useEffect, useRef } from "react";
 import Card from "./Card";
 import { skyfiPlatformApiArchives } from "../Services/archive";
 import { ContextGlobal } from "../Context/globalContext";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { continueCatalogArchives } from "../Services/archive";
 import { filters } from "../Utils/filtersArchiveData";
 
 const OpenData = () => {
   const { state, dispatch } = useContext(ContextGlobal);
   const containerRef = useRef(null); // Referencia al contenedor con scroll
+  const params = useParams(); // Obtiene el parámetro de la URL
 
   useEffect(() => {
     const filterOpen = {
+      aoi: params.aoi.replace("aoi=", ""), // se remplaza porque fue enviado con un parametro identificador "aoi="
       resolutions: filters.resolutionsOpen,
       productTypes: filters.productTypesOpen,
       providers: filters.providers,
