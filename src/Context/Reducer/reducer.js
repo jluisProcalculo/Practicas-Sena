@@ -1,4 +1,4 @@
-export const initialState = { imageOpen: [], nextPage: null, detailImage: {}, aoi: "" };
+export const initialState = { imageOpen: [], nextPage: null, stateDetail: false, detailImage: {}, aoi: "" };
 
 export const reducer = (state, action) => {
     switch (action.type) {
@@ -17,6 +17,8 @@ export const reducer = (state, action) => {
             return { ...state, detailImage: action.payload };
         case "GET_AOI":
             return { ...state, aoi: action.payload };
+        case "TURN_STATE_DETAIL":
+            return { ...state, stateDetail: action.payload };
         default:
             throw new Error("Error in Reducer");
     }

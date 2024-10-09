@@ -27,8 +27,8 @@ function App() {
                 <Route path={`${routesExplore.open}/:aoi`} element={<OpenData />} />
               </Route>
               <Route path={`${routes.explore}`} element={<FormAOI />} />
+              <Route path={`${routesExplore.detail}/:id`} element={<Detail />} />
             </Route>
-          <Route path={`${routesExplore.detail}/:id`} element={<Detail />} />
           <Route path={routes.notFound} element={<h1>Error 404 - Page not Found</h1>} />
         </Route>
       </Routes>

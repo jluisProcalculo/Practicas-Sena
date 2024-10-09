@@ -9,15 +9,23 @@ const Detail = () => {
   const { state, dispatch } = useContext(ContextGlobal);
 
   useEffect(() => {
+    dispatch({ type: "TURN_STATE_DETAIL", payload: true }); // Estado de detail a true
     skyfiPlatformApiGetArchive(params.id, dispatch);
   }, []);
+
+  /**
+   * Maneja la acción de modificar el estado de Detail a false 
+   */
+  const handleReturn = () => {
+    dispatch({ type: "TURN_STATE_DETAIL", payload: false });
+  };
 
   return (
     <>
       <div className="left_container detail_container">
         <div className="header_detail">
           <div className="icon_preview">
-            <Link to={-1}>
+            <Link to={-1} onClick={handleReturn}>
               <img src="/arrow-left-line.svg" alt="" width={24} />
             </Link>
           </div>

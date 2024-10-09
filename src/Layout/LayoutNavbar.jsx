@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const LayoutNavbar = () => {
   return (
-    <div>
+    <div className="layout_navbar">
       <Navbar />
       <Outlet />
     </div>
