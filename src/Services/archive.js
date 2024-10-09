@@ -1,20 +1,20 @@
 import axios from "axios";
 import apiKey from "../../middleware/config.json";
 
-export const skyfiPlatformApiArchives = async (dispatch, filterOpen) => {
+export const skyfiPlatformApiArchives = async (dispatch, filters) => {
     try {
         let headers = { "X-Skyfi-Api-Key": apiKey.apiKey };
         let request = {
-            aoi: "POLYGON((-97.759918 30.248653, -97.723191 30.248653, -97.723191 30.27879, -97.759918 30.27879, -97.759918 30.248653))",
+            aoi: filters.aoi,
             fromDate: "2024-01-01T00:00:00",
             toDate: "2024-09-26T00:00:00",
             max_cloud_coverage_percent: 20,
             max_off_nadir_angle: 4,
-            resolutions: filterOpen.resolutions,
-            productTypes: filterOpen.productTypes,
-            providers: filterOpen.providers,
-            openData: filterOpen.openData,
-            minOverlapRatio: "0.5",
+            resolutions: filters.resolutions,
+            productTypes: filters.productTypes,
+            providers: filters.providers,
+            openData: filters.openData,
+            minOverlapRatio: "0.1",
             page_size: 10,
         };
         let archives_response = await axios.post(
