@@ -3,6 +3,7 @@
   --borders: rgb(199, 191, 191);
   --borders-secondary: rgb(63, 61, 61);
   --bg-navbar-color: rgb(9, 6, 20);
+  --hover-icon-color: rgba(205, 195, 230, 0.123);
 }
 
 * {
@@ -51,12 +52,12 @@
     width: 24px;
     height: 24px;
     position: absolute;
-    left: 21px;
+    left: 87px;
   }
 
   .btn_search_container {
     position: absolute;
-    left: 336px;
+    left: 402px;
 
     .btn_search {
       width: 40px;
@@ -80,7 +81,7 @@
 
 /* ------------------------ Options Existign ------------------------ */
 .scroll_container {
-  height: calc(100vh - 64px);
+  height: calc(100vh - 103px);
   overflow-y: auto;
 }
 
@@ -106,6 +107,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
 
   &>p {
     padding: 1em;
@@ -365,5 +367,64 @@
     color: white;
     background-color: var(--bg-navbar-color);
     cursor: pointer;
+  }
+}
+
+/* ------------------------ Navbar ------------------------ */
+.layout_navbar {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar_container {
+  width: 66px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--bg-navbar-color);
+}
+
+.hr_line {
+  width: 100%;
+  height: 1px;
+  border: none;
+  background-color: var(--borders-secondary);
+  margin: 8px 0px;
+}
+
+.btn_navbar {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-navbar-color);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--hover-icon-color);
+  }
+
+  .img_navbar {
+    width: 26px;
+
+    &:hover {
+      scale: 1.05;
+    }
+  }
+
+  .principal_icon {
+    width: 40px;
+
+    &:hover {
+      scale: 1.05;
+      color: #f1bd12;
+    }
   }
 }
