@@ -9,7 +9,6 @@ const LayoutExistingImage = () => {
 
   return (
     <div className="left_container">
-      {/* en Detail se modifica stateDetail con el fin de que no aparezca Search y Explore */}
       {state.stateDetail == false ? (
         <>
           <Search />

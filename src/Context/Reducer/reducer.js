@@ -1,4 +1,6 @@
-export const initialState = { imageOpen: [], nextPage: null, stateDetail: false, detailImage: {}, aoi: "" };
+export const initialState = {
+    imageOpen: [], nextPage: null, stateDetail: false, detailImage: {}, aoi: "", styleExplore: true
+};
 
 export const reducer = (state, action) => {
     switch (action.type) {
@@ -13,12 +15,14 @@ export const reducer = (state, action) => {
                     existingImage.archiveId === newImage.archiveId)
             );
             return { ...state, imageOpen: [...state.imageOpen, ...noRepit] };
-        case "GET_DETAILIMAGE":
+        case "GET_DETAILIMAGE": // información que se muestra en Detail
             return { ...state, detailImage: action.payload };
         case "GET_AOI":
             return { ...state, aoi: action.payload };
-        case "TURN_STATE_DETAIL":
+        case "TURN_STATE_DETAIL": // con el fin de que no aparezca Search y Explore en LayoutExistingImage
             return { ...state, stateDetail: action.payload };
+        case "STYLE_SELECTED_OPTION_EXPLORE": // manejar el border-bottom de las opciones Commercial y Open
+            return { ...state, styleExplore: action.payload}
         default:
             throw new Error("Error in Reducer");
     }

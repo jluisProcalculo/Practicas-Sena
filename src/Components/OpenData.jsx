@@ -11,6 +11,13 @@ const OpenData = () => {
   const containerRef = useRef(null); // Referencia al contenedor con scroll
   const params = useParams(); // Obtiene el parámetro de la URL
 
+  /**
+   * Actualiza el valor del estado para determinar el color del borde.
+   */
+  useEffect(() => {
+    dispatch({ type: "STYLE_SELECTED_OPTION_EXPLORE", payload: false });
+  }, []);
+
   useEffect(() => {
     const filterOpen = {
       aoi: params.aoi.replace("aoi=", ""), // se remplaza porque fue enviado con un parametro identificador "aoi="

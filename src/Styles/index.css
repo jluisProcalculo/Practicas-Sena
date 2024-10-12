@@ -1,9 +1,11 @@
 :root {
-  --bg-existing: rgba(233, 230, 230, 0.521);
-  --borders: rgb(199, 191, 191);
-  --borders-secondary: rgb(63, 61, 61);
+  --bg-principal-color: white;
+  --bg-secondary-color: rgba(233, 230, 230, 0.521);
   --bg-navbar-color: rgb(9, 6, 20);
-  --hover-icon-color: rgba(205, 195, 230, 0.123);
+  --borders-principal: rgb(199, 191, 191);
+  --borders-secondary: rgb(63, 61, 61);
+  --hover-navbar-icon-color: rgba(205, 195, 230, 0.123);
+  --hover-card-image-color: rgba(245, 130, 85, 0.185);
 }
 
 * {
@@ -21,11 +23,12 @@
 /* ------------------------ Existing Image ------------------------ */
 .left_container {
   width: 390px;
+  background-color: var(--bg-principal-color);
 }
 
 /* ------------------------ Search Existing Image ------------------------ */
 .search_container {
-  background-color: var(--bg-existing);
+  background-color: var(--bg-secondary-color);
   width: 100%;
   height: 64px;
   padding: 0.5em;
@@ -39,7 +42,7 @@
     width: 100%;
     padding: 0 48px;
     font-size: 1em;
-    border: 1px solid var(--borders);
+    border: 1px solid var(--borders-principal);
     border-radius: 5px;
     outline: none;
 
@@ -62,17 +65,13 @@
     .btn_search {
       width: 40px;
       height: 40px;
-      background-color: white;
+      background-color: var(--bg-principal-color);
       border: none;
-      border-left: 1px solid var(--borders);
+      border-left: 1px solid var(--borders-principal);
       cursor: pointer;
 
-      &>img {
-        fill: gray;
-      }
-
       &:hover {
-        background-color: var(--bg-existing);
+        background-color: var(--bg-secondary-color);
         border-radius: 3px;
       }
     }
@@ -90,14 +89,13 @@
   width: 50%;
   border: none;
   padding: 0.5em;
-  background-color: var(--bg-existing);
+  background-color: var(--bg-secondary-color);
   font-weight: 600;
   font-size: 1em;
   cursor: pointer;
-  border-bottom: 2px solid var(--borders);
 
   &:active {
-    border-bottom: 2px solid var(--borders-secondary);
+    background-color: var(--hover-navbar-icon-color);
   }
 }
 
@@ -107,7 +105,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: var(--bg-principal-color);
 
   &>p {
     padding: 1em;
@@ -121,12 +119,12 @@
     &>button {
       width: 40px;
       height: 40px;
-      background-color: white;
+      background-color: var(--bg-principal-color);
       border: none;
       cursor: pointer;
 
       &:hover {
-        background-color: var(--bg-existing);
+        background-color: var(--bg-secondary-color);
         border-radius: 5px;
       }
     }
@@ -144,7 +142,7 @@
 .card_container {
   width: 100%;
   padding: 0.5em;
-  border: 1px solid var(--borders);
+  border: 1px solid var(--borders-principal);
   border-radius: 5px;
   display: flex;
   flex-direction: row;
@@ -154,7 +152,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(245, 130, 85, 0.185);
+    background-color: var(--hover-card-image-color);
   }
 }
 
@@ -202,18 +200,25 @@
   justify-content: center;
   align-items: center;
   font-size: 0.9em;
-  border: 1px solid var(--borders);
+  border: 1px solid var(--borders-principal);
   border-radius: 5px;
 
   &>a {
     background-color: var(--bg-navbar-color);
-    color: white;
+    color: var(--bg-principal-color);
     width: 100%;
     height: 24px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &:active {
+      border: 2px solid var(--bg-navbar-color);
+      font-weight: bold;
+      background-color: var(--bg-principal-color);
+      color: var(--bg-navbar-color);
+    }
   }
 }
 
@@ -232,7 +237,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: var(--bg-existing);
+  background-color: var(--bg-secondary-color);
 
   & .icon_preview {
     width: 40px;
@@ -261,23 +266,89 @@
   justify-content: space-between;
   align-items: center;
   padding: 1em 1.5em;
-  border-bottom: 1px solid var(--borders);
+  border-bottom: 1px solid var(--borders-principal);
 
   .btn_clarity {
     width: 30px;
     height: 30px;
-    background-color: white;
+    background-color: var(--bg-principal-color);
     border: none;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 1px solid var(--borders);
+    border: 1px solid var(--borders-principal);
     border-radius: 5px;
     cursor: pointer;
 
     &:hover {
-      background-color: var(--bg-existing);
+      background-color: var(--bg-secondary-color);
+    }
+  }
+}
+
+.content_detail {
+  padding: 0.8em;
+
+  .general_info_detail {
+    display: flex;
+    gap: 1em;
+
+    .img_detail {
+      width: 100px;
+      height: 100px;
+      border-radius: 5px;
+    }
+
+    .info_detail {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .info_second {
+        font-size: 14px;
+      }
+    }
+
+    .btn_sample_detail {
+      height: 32px;
+      width: 160px;
+      border: none;
+      border-radius: 5px;
+      border: 2px solid var(--bg-navbar-color);
+      background-color: var(--bg-principal-color);
+      color: var(--bg-navbar-color);
+      font-weight: bold;
+      padding: 0px 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      &:active {
+        background-color: var(--bg-navbar-color);
+        color: var(--bg-principal-color);
+      }
+    }
+  }
+
+  .specific_info_detail {
+    padding-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5em;
+
+    .cuadrilla_detail {
+      font-size: 14px;
+      display: flex;
+      gap: 1em;
+      border-bottom: 1px solid var(--borders-principal);
+      padding: 3px;
+
+      &>p {
+        width: 50%;
+      }
     }
   }
 }
@@ -322,11 +393,31 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
 
     &>p {
       font-size: 16px;
       font-weight: bold;
-      color: white;
+      color: var(--bg-principal-color);
+    }
+
+    &>svg {
+      fill: var(--bg-principal-color);
+    }
+
+    &:active {
+      border: 2px solid var(--bg-navbar-color);
+      background-color: var(--bg-principal-color);
+      color: var(--bg-navbar-color);
+      fill: var(--bg-navbar-color);
+
+      &>p {
+        color: var(--bg-navbar-color);
+      }
+
+      &>svg {
+        fill: var(--bg-navbar-color);
+      }
     }
   }
 }
@@ -362,11 +453,16 @@
     flex-direction: column;
     justify-content: center;
     border: none;
-    border: 2px solid var(--bg-navbar-color);
     border-radius: 8px;
-    color: white;
+    color: var(--bg-principal-color);
     background-color: var(--bg-navbar-color);
     cursor: pointer;
+
+    &:active {
+      border: 2px solid var(--bg-navbar-color);
+      background-color: var(--bg-principal-color);
+      color: var(--bg-navbar-color);
+    }
   }
 }
 
@@ -408,7 +504,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: var(--hover-icon-color);
+    background-color: var(--hover-navbar-icon-color);
   }
 
   .img_navbar {

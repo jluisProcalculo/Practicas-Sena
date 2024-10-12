@@ -10,7 +10,14 @@ const CommercialData = () => {
   const { state, dispatch } = useContext(ContextGlobal);
   const containerRef = useRef(null); // Referencia al contenedor con scroll
   const params = useParams(); // Obtiene el parámetro de la URL
-  
+
+  /**
+   * Actualiza el valor del estado para determinar el color del borde.
+   */
+  useEffect(() => {
+    dispatch({ type: "STYLE_SELECTED_OPTION_EXPLORE", payload: true });
+  }, []);
+
   useEffect(() => {
     const filterCommercial = {
       aoi: params.aoi.replace("aoi=", ""), // se remplaza porque fue enviado con un parametro identificador "aoi="
@@ -64,7 +71,7 @@ const CommercialData = () => {
           ))}
           <div className="link_taskingorder">
             <p>Not finding what you're looking for?</p>
-            <Link to={"https://google.com"}>ORDER NEW IMAGE</Link>
+            <Link to={"#"}>ORDER NEW IMAGE</Link>
           </div>
         </div>
       </div>

@@ -6,6 +6,13 @@ const DetailExistingImage = ({ image }) => {
   const thumbnail = image.thumbnailUrls && image.thumbnailUrls["300x300"];
 
   /**
+   * Evitar acceder al promp 'image' cuando aún está vacío
+   */ 
+  if (Object.keys(image).length === 0) {
+    return <p className="scroll_container"></p>;
+  }
+
+  /**
    * Capitaliza la primera letra de cada palabra en el texto, excepto cuando es "SAR".
    *
    * @param {string} text - Cadena de texto que será procesada.
@@ -56,6 +63,30 @@ const DetailExistingImage = ({ image }) => {
   };
 
   /**
+   * Convierte una cadena de tiempo en formato ISO a formato de 12 horas con AM/PM.
+   *
+   * @param {string} isoString - Cadena de tiempo en formato ISO, por ejemplo "2000-01-01T00:00:00.024000-05:00".
+   * @method split('T') - Divide la cadena ISO para extraer la parte de la hora.
+   * @method split(':') - Divide la hora en horas y minutos.
+   * @method parseInt - Convierte la cadena de horas a un número entero.
+   *
+   * Paso a paso:
+   * 1. Se extrae la parte de la hora de la cadena ISO dividiéndola en "T" y luego en ":" para obtener horas y minutos.
+   * 2. Se convierte la hora a un número entero utilizando "parseInt" y se ajusta al formato de 12 horas.
+   * 3. Se determina si es AM o PM en base a si la hora es mayor o igual a 12.
+   * 4. Se devuelve la hora en formato "hh:mm AM/PM", ajustando las horas para el formato de 12 horas.
+   */
+  function formatTime(isoString) {
+    const timePart = isoString.split("T")[1].split(":");
+    let hours = parseInt(timePart[0], 10);
+    const minutes = timePart[1];
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12 || 12;
+    const formattedMinutes = minutes.toString().padStart(2, "0");
+    return `${hours}:${formattedMinutes} ${ampm}`;
+  }
+
+  /**
    * Formatea el valor de la resolución (gsd) en centímetros o metros dependiendo de su tamaño.
    *
    * @param {number} gsd - Valor de la resolución en centímetros.
@@ -73,6 +104,25 @@ const DetailExistingImage = ({ image }) => {
     }
   };
 
+  let infoDetail = [
+    { title: "GSD:", value: sizeResolution(image.gsd) },
+    { title: "Date:", value: formatDate(image.captureTimestamp) },
+    { title: "Local Time:", value: formatTime(image.captureTimestamp) },
+    {
+      title: "Estimated cloud cover over image:",
+      value: `${image.cloudCoveragePercent.toFixed(2)}%`,
+    },
+    // {title: "Number of Bands:", value: ""}, // ToDo: determinar numero de bandas para todas las imagenes
+    {
+      title: "File will be delivered in:",
+      value: `${image.deliveryTimeHours.toFixed(0)}hrs (approx.)`,
+    },
+    { title: "Sensor:", value: image.productType },
+    { title: "Source (Satellite):", value: textCapitalize(image.provider) },
+    { title: "Off-nadir:", value: `${image.offNadirAngle.toFixed(2)}°` },
+    { title: "Minimum size order:", value: `${image.minSqKm.toFixed(0)} km2` },
+  ];
+
   return (
     <>
       <div className="scroll_container">
@@ -85,71 +135,34 @@ const DetailExistingImage = ({ image }) => {
         <div>
           {thumbnail && (
             <>
-              <section className="caracterist_card">
-                <img
-                  src={image.thumbnailUrls["300x300"]}
-                  alt=""
-                  width={90}
-                  height={90}
-                  style={{ borderRadius: "5px" }}
-                />
-                <section className="info_card">
-                  <p>{textCapitalize(image.productType)} Image</p>
-                  <p>
-                    {textCapitalize(image.resolution)}:{" "}
-                    {sizeResolution(image.gsd)}
-                  </p>
-                  <p>{formatDate(image.captureTimestamp)}</p>
-                  <p className="cloud_p">
-                    <img src="/cloud-sun.svg" alt="" width={24} />
-                    {image.cloudCoveragePercent.toFixed(2)}%
-                  </p>
+              <section className="content_detail">
+                <section className="general_info_detail">
+                  <img
+                    className="img_detail"
+                    src={image.thumbnailUrls["300x300"]}
+                  />
+                  <div className="info_detail">
+                    <p>
+                      <b>{textCapitalize(image.productType)} Image</b>
+                    </p>
+                    <p className="info_second">
+                      {`${textCapitalize(image.resolution)} Resolution: 
+                      ${sizeResolution(image.gsd)} per pixel`}
+                    </p>
+                    <button className="btn_sample_detail">
+                      SEE SAMPLE IMAGES
+                    </button>
+                  </div>
+                </section>
+                <section className="specific_info_detail">
+                  {infoDetail.map((element, index) => (
+                    <div key={index} className="cuadrilla_detail">
+                      <p>{element.title}</p>
+                      <p style={{ fontWeight: "500" }}>{element.value}</p>
+                    </div>
+                  ))}
                 </section>
               </section>
-              <section className="price_container">
-                <div className="price">
-                  <h2>${image.priceForOneSquareKm.toFixed(2)} </h2>
-                  <div style={{ fontSize: "0.7em" }}>/ km2</div>
-                </div>
-                <div className="delivery" style={{ fontSize: "0.7em" }}>
-                  <p style={{ color: "rgb(107, 105, 105)" }}>
-                    min. size {image.minSqKm.toFixed(0)}km2
-                  </p>
-                  <p style={{ color: "rgb(107, 105, 105)" }}>
-                    Delivery in: {image.deliveryTimeHours.toFixed(0)}h
-                  </p>
-                </div>
-              </section>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Accusantium iusto culpa aliquid aperiam voluptatum laboriosam
-                suscipit, libero fugiat ipsum harum repellat facere iste
-                corrupti eius consectetur reiciendis, repudiandae ad explicabo?
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Accusantium iusto culpa aliquid aperiam voluptatum laboriosam
-                suscipit, libero fugiat ipsum harum repellat facere iste
-                corrupti eius consectetur reiciendis, repudiandae ad explicabo?
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Accusantium iusto culpa aliquid aperiam voluptatum laboriosam
-                suscipit, libero fugiat ipsum harum repellat facere iste
-                corrupti eius consectetur reiciendis, repudiandae ad explicabo?
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Accusantium iusto culpa aliquid aperiam voluptatum laboriosam
-                suscipit, libero fugiat ipsum harum repellat facere iste
-                corrupti eius consectetur reiciendis, repudiandae ad explicabo?
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Accusantium iusto culpa aliquid aperiam voluptatum laboriosam
-                suscipit, libero fugiat ipsum harum repellat facere iste
-                corrupti eius consectetur reiciendis, repudiandae ad explicabo?
-              </p>
             </>
           )}
         </div>
