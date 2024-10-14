@@ -475,7 +475,7 @@
 
 .navbar_container {
   width: 66px;
-  padding: 6px;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
